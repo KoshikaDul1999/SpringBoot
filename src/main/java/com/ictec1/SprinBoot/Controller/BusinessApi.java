@@ -5,6 +5,7 @@ import com.ictec1.SprinBoot.Entity.Business;
 import com.ictec1.SprinBoot.Entity.Location;
 import com.ictec1.SprinBoot.Repository.BusinessRepo;
 import com.ictec1.SprinBoot.Service.BusinessService;
+import com.ictec1.SprinBoot.UrlConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,15 +25,18 @@ public class BusinessApi {
     @Autowired
     private BusinessService businessService;
 
-    @GetMapping("/showBusiness")
-    public ResponseEntity<Business> showBusiness(){
+    @Autowired
+    private UrlConfig urlConfig;
+
+    @GetMapping("/show_business")
+    public ResponseEntity<Business> showBusiness() {
         Business b = new Business();
-        b.setName("Koshika");
-        b.setPhone("0765452486");
+        b.setName("Mtron");
+        b.setPhone("+1345627378");
 
         Address a = new Address();
-        a.setLine_one("254/A");
-        a.setLine_two("Robert Gunawardhane Rd");
+        a.setLine_one("254/1A");
+        a.setLine_two("Robert Gunawardhana Road");
         a.setState("Western");
         a.setCity("Battaramulla");
         a.setCountry("Sri Lanka");
@@ -40,8 +44,8 @@ public class BusinessApi {
         b.setAddress(a);
 
         Location l = new Location();
-        l.setLat("2.254658");
-        l.setLon("3.654235");
+        l.setLat("41.26353");
+        l.setLon("-80.23453");
 
         b.setLocation(l);
 
@@ -49,26 +53,26 @@ public class BusinessApi {
     }
 
     @PostMapping("/business")
-    public ResponseEntity<Business> saveBusiness(@RequestBody Business b){
+    public ResponseEntity<Business> saveBusiness(@RequestBody Business b) {
         b = this.businessService.handleRegistration(b);
         return ResponseEntity.ok().body(b);
     }
 
     @GetMapping("/business")
-    public ResponseEntity<List<Business>>getAllBusiness(){
+    public ResponseEntity<List<Business>> getAllBusiness() {
         List<Business> all = repo.findAll();
         return ResponseEntity.ok().body(all);
     }
 
     @GetMapping("/business/{id}")
-    public ResponseEntity<Optional<Business>>saveIdBusiness(@PathVariable Long id){
+    public ResponseEntity<Optional<Business>> findBusiness(@PathVariable Long id) {
         Optional<Business> b = this.repo.findById(id);
         return ResponseEntity.ok().body(b);
     }
 
     @DeleteMapping("/business/{id}")
-    public ResponseEntity deleteBusiness(@PathVariable Long id){
-        if (this.repo.existsById(id)){
+    public ResponseEntity<Optional<Business>> deleteBusiness(@PathVariable Long id) {
+        if (repo.existsById(id)) {
             this.repo.deleteById(id);
             return ResponseEntity.ok().build();
         }
@@ -81,4 +85,8 @@ public class BusinessApi {
         return ResponseEntity.ok().body(businessesWithEnd);
     }
 
+    @GetMapping("/my_url")
+    public ResponseEntity<String> findNameBusiness() {
+        return ResponseEntity.ok().body(this.urlConfig.getUrl());
+    }
 }
