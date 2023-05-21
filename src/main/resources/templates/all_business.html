@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-
+    <table id="customers">
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Location</th>
+            </tr>
+            <tr th:each="item : ${all}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.phone}"></td>
+                <td>
+                    [[${item.address.line_one}]]<br>
+                    [[${item.address.line_two}]]<br>
+                    [[${item.address.state}]]<br>
+                    [[${item.address.city}]]<br>
+                    [[${item.address.country}]]<br>
+                </td>
+                <td>
+                    [[${item.location.lat}]]<br>
+                    [[${item.location.lon}]]<br>
+                </td>
+            </tr>
+    </table>
 </body>
 </html>
