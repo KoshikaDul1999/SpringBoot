@@ -2,8 +2,9 @@ package com.ictec1.SprinBoot.Entity;
 
 public class Business {
     private String name;
-    private String address;
     private String phone;
+    private Address address;
+    private Location location;
 
     public String getName() {
         return name;
@@ -11,14 +12,6 @@ public class Business {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {
@@ -29,25 +22,19 @@ public class Business {
         this.phone = phone;
     }
 
-//    class position{
-//        private long lat;
-//        private long lon;
-//
-//        public long getLat() {
-//            return lat;
-//        }
-//
-//        public void setLat(long lat) {
-//            this.lat = lat;
-//        }
-//
-//        public long getLon() {
-//            return lon;
-//        }
-//
-//        public void setLon(long lon) {
-//            this.lon = lon;
-//        }
-//    }
+    public Address getAddress() {
+        return address;
+    }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
