@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/aapi")
 public class AuthController {
 
-    @GetMapping("/showBusiness")
+    @GetMapping("/showssBusiness")
     public ResponseEntity<Business> Business(){
         Business b = new Business();
         b.setName("Koshika");

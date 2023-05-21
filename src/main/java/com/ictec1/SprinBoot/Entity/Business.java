@@ -1,8 +1,6 @@
 package com.ictec1.SprinBoot.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Business {
@@ -12,8 +10,19 @@ public class Business {
     private Long id;
     private String name;
     private String phone;
+
+    @OneToOne(cascade = {CascadeType.ALL})
     private Address address;
+    @OneToOne(cascade = {CascadeType.ALL})
     private Location location;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
