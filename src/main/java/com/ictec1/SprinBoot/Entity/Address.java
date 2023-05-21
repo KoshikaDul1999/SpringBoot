@@ -1,6 +1,14 @@
 package com.ictec1.SprinBoot.Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity
 public class Address {
+    @Id
+    @GeneratedValue
+    private Long id;
     private String line_one;
     private String line_two;
     private String state;
